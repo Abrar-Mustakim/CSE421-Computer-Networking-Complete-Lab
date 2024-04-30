@@ -1,0 +1,61 @@
+PC1:
+ipconfig /all
+
+PC3:
+ipconfig /all
+
+PC1:
+ping 10.10.1.18
+tracert 10.10.1.18
+
+PC3:
+tracert 10.10.1.98
+
+R1:
+cisco
+en
+class
+show ip interface brief
+show ip route
+
+
+
+R3:
+show ip interface brief
+show ip route
+
+R2:
+show ip interface brief
+conf t
+int se0/0/0
+ip address 10.10.1.5 255.255.255.252
+no shut
+
+PC1:
+ping 10.10.1.18
+
+PC3:
+ping 10.10.1.98
+
+PC2:
+ipv6config /all
+
+PC4:
+ipv6config /all
+ping 2001:DB8:1:1::2
+
+PC2:
+tracert 2001:DB8:1:4::2
+
+
+PC4:
+tracert 2001:DB8:1:1::2
+
+R3:
+show ipv6 interface brief
+
+PC2:
+ping 2001:DB8:1:4::2
+
+PC4:
+ping 2001:DB8:1:1::2

@@ -1,0 +1,63 @@
+Edge_router:
+en
+config t
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+exit
+show ip route
+
+tracert 198.0.0.10
+
+config t
+ip route 0.0.0.0 0.0.0.0 s0/0/1 5
+exit
+show ip route
+
+show run
+
+config t
+int s0/0/0
+shut
+ end
+
+show ip route
+
+PC - A:
+tracert 198.0.0.10
+
+Edge_Router:
+en
+config t
+int s0/0/0
+no shutdown
+
+PC - A:
+tracert 198.0.0.10
+
+Edge_Router:
+config t
+ipv6 unicast-routing
+
+ipv6 route ::/0 2001:DB8:A:2::1 5
+exit 
+show ipv6 route
+
+show run
+
+config t
+int s0/0/0
+shut
+end
+
+show ipv6 route
+
+PC - A:
+tracert 2001:DB8:F:F::10
+
+Edge_Router:
+en
+config t
+int s0/0/0
+no shutdown
+
+PC - A:
+tracert 2001:DB8:F:F::10
